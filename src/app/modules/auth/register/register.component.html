@@ -1,0 +1,86 @@
+<div class="w-full h-screen flex flex-col p-10 gap-10">
+  <div class="flex items-center justify-between">
+    <div>
+      <button class="b-subtle" routerLink="/">
+        <arrow-uturn-left-solid-icon [size]="32"></arrow-uturn-left-solid-icon>
+      </button>
+    </div>
+    <div>
+      <img src="/assets/logos/logo-job-trading.svg" alt="JOB-TRADING" class="h-10">
+    </div>
+  </div>
+  <div class="flex-1 flex flex-col justify-between">
+    <div class="flex flex-col gap-10">
+      <div class="flex flex-col gap-5">
+        <span class="text-4xl font-questrial text-neutral-900">Registrar usuario</span>
+      </div>
+
+      <form class="" [formGroup]="registerForm">
+        <div class="flex flex-col gap-5">
+
+          <input formControlName="name" placeholder="Nombres" type="text" class="i-default">
+          <div
+            *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched && registerForm.get('name')?.hasError('required')"
+            class="flex flex-col gap-2">
+            <span class="text-d h-700"></span>
+            <p class="text-d t-default"><span class="text-danger">Este campo es requerido</span></p>
+          </div>
+
+          <input formControlName="lastname" placeholder="Apellidos" type="text" class="i-default">
+          <div
+            *ngIf="registerForm.get('lastname')?.invalid && registerForm.get('lastname')?.touched && registerForm.get('lastname')?.hasError('required')"
+            class="flex flex-col gap-2">
+            <span class="text-d h-700"></span>
+            <p class="text-d t-default"><span class="text-danger">Este campo es requerido</span></p>
+          </div>
+
+          <input formControlName="username" placeholder="Nombre de usuario" type="text" class="i-default">
+          <div
+            *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched && registerForm.get('username')?.hasError('required')"
+            class="flex flex-col gap-2">
+            <span class="text-d h-700"></span>
+            <p class="text-d t-default"><span class="text-danger">Este campo es requerido</span></p>
+          </div>
+
+          <input formControlName="password" placeholder="Contraseña" type="password" class="i-default">
+          <div
+            *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched && registerForm.get('password')?.hasError('required')"
+            class="flex flex-col gap-2">
+            <span class="text-d h-700"></span>
+            <p class="text-d t-default"><span class="text-danger">Este campo es requerido</span></p>
+          </div>
+          <div
+            *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched && registerForm.get('password')?.hasError('minLength')"
+            class="flex flex-col gap-2">
+            <span class="text-d h-700"></span>
+            <p class="text-d t-default"><span class="text-danger">Este tiene que ser mayor a 8 dígitos</span></p>
+          </div>
+
+          <input formControlName="confirmPassword" placeholder="Confirmar contraseña" type="password" class="i-default">
+          <div
+            *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched && registerForm.get('confirmPassword')?.hasError('required')"
+            class="flex flex-col gap-2">
+            <span class="text-d h-700"></span>
+            <p class="text-d t-default"><span class="text-danger">Este campo es requerido</span></p>
+          </div>
+
+          <!--<select formControlName="identification_type" placeholder="Tipo de identificación" class="i-default">
+            <option value="DNI">DNI</option>
+            <option value="RUC">RUC</option>
+            <option value="Carnet extranjería">Carnet extranjería</option>
+          </select>
+          <input formControlName="identification_number" placeholder="Número de identificación" type="text" class="i-default">
+          <input formControlName="favorite_phrase" placeholder="Frase favorita" type="text" class="i-default">-->
+        </div>
+      </form>
+
+    </div>
+
+
+
+    <div class="flex flex-col gap-4 items-center">
+      <button (click)="onSendForm()" class="b-primary w-full">Registrarse</button>
+    </div>
+
+  </div>
+</div>

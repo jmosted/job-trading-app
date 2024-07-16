@@ -1,0 +1,36 @@
+<div class="w-full h-screen flex flex-col p-10 gap-10">
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-4">
+      <button class="b-subtle" routerLink="/login">
+        <power-solid-icon [size]="32"></power-solid-icon>
+      </button>
+    </div>
+    <div>
+      <img src="assets/logos/logo-job-trading.svg" alt="JOB-TRADING" class="h-10">
+    </div>
+  </div>
+  <div class="flex-1 flex flex-col overflow-y-auto">
+    <div class="flex flex-col gap-10">
+      <div class="flex flex-col gap-5">
+        <span class="text-4xl font-questrial text-neutral-900">¿Qué haremos hoy?</span>
+        <span class="text-xl text-neutral-900">Seleccione que quieres hacer en la aplicación</span>
+      </div>
+
+      <div class="grid grid-cols-1 gap-5">
+        <div class="flex-1">
+          <button routerLink="/categories" class="w-full b-max bg-violet-100 border-2 border-violet-200">
+            <img src="assets/pictures/pic-ofrecer-trabajo.png" alt="OFRECER">
+            <span class="text-base text-neutral-900">Ofrecer trabajo</span>
+          </button>
+        </div>
+        <div class="flex-1">
+          <button routerLink="/filter-work" class="w-full b-max bg-pink-100 border-2 border-pink-200">
+            <img src="assets/pictures/pic-buscar-trabajo.png" alt="BUSCAR">
+            <span class="text-base text-neutral-900">Buscar trabajo</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

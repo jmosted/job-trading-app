@@ -1,0 +1,50 @@
+<div class="w-full h-screen flex flex-col p-10 gap-10">
+  <div class="flex items-center justify-between">
+    <div>
+      <button class="b-subtle" routerLink="/">
+        <arrow-uturn-left-solid-icon [size]="32"></arrow-uturn-left-solid-icon>
+      </button>
+    </div>
+    <div>
+      <img src="/assets/logos/logo-job-trading.svg" alt="JOB-TRADING" class="h-10">
+    </div>
+  </div>
+  <div class="flex-1 flex flex-col justify-between">
+    <div class="flex flex-col gap-10">
+      <div class="flex flex-col gap-5">
+        <span class="text-4xl font-questrial text-neutral-900">Vamos a iniciar sesión.</span>
+        <span class="text-xl text-neutral-900">¡Bienvenido de nuevo, te extrañamos!</span>
+      </div>
+
+      <form class="" [formGroup]="registerForm">
+        <div class="flex flex-col gap-5">
+          <input formControlName="username" placeholder="Nombre de usuario" type="text" class="i-default">
+          <div
+            *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched && registerForm.get('username')?.hasError('required')"
+            class="flex flex-col gap-2">
+            <span class="text-d h-700"></span>
+            <p class="text-d t-default"><span class="text-danger">Este campo es requerido</span></p>
+          </div>
+
+          <input formControlName="password" placeholder="Contraseña" type="password" class="i-default">
+          <div
+            *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched && registerForm.get('password')?.hasError('required')"
+            class="flex flex-col gap-2">
+            <span class="text-d h-700"></span>
+            <p class="text-d t-default"><span class="text-danger">Este campo es requerido clave</span></p>
+          </div>
+
+        </div>
+      </form>
+
+    </div>
+
+    <div class="flex flex-col gap-4 items-center">
+      <p>
+        ¿No tiene cuenta?, <a routerLink="/register" class="underline">Regístrese</a>
+      </p>
+      <button (click)="onSendForm()" class="b-primary w-full">Iniciar sesión</button>
+    </div>
+
+  </div>
+</div>
