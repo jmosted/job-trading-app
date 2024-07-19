@@ -8,6 +8,8 @@ import CryptoJS from 'crypto-js';
 import {AuthService} from '../../../services/auth/auth.service';
 
 import {NgIf} from "@angular/common";
+import { LoadingComponent } from '../../../core/components/loading/loading.component';
+import { NotificationService } from '../../../services/notification/notification.service';
 
 
 @Component({
@@ -17,8 +19,10 @@ import {NgIf} from "@angular/common";
     ReactiveFormsModule,
     SolidIconsModule,
     RouterLink,
-    NgIf
-  ],
+    NgIf,
+    LoadingComponent
+],
+  providers:[LoadingComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -36,15 +40,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     password: ''
   };
 
-  ngOnDestroy(): void {
-    this._subscription.unsubscribe();
-  }
-
-  ngOnInit(): void {
-    localStorage.removeItem('Token');
-  }
-
-  constructor(private fb: FormBuilder, private router: Router, private AuthService: AuthService) {
+  constructor(private fb: FormBuilder, private router: Router, private AuthService: AuthService, private notifService: NotificationService) {
     this.registerForm = this.fb.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
@@ -52,6 +48,16 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     this.alertForm = {type: '', message: '', visible: false};
     this.loadingForm = false;
+  }
+
+  ngOnDestroy(): void {
+    this._subscription.unsubscribe();
+  }
+
+  ngOnInit(): void {
+    let token = localStorage.getItem('Token');
+    if(token && token != '') this.router.navigate(['/home']);
+    //localStorage.removeItem('Token');
   }
 
   private generateRandomIV(): string {
@@ -86,9 +92,11 @@ export class LoginComponent implements OnInit, OnDestroy {
         next: (res) => {
           if (res.error) {
             this.errorMessage = 'Error al iniciar sesión';
+            this.notifService.show(res.msg??this.errorMessage, 'error', 5000);
             return;
           }
           this.catchTokenUrl(res)
+          this.notifService.show(res.msg, 'success', 5000);
           this.router.navigate(['/home']);
         },
         error: (err) => {

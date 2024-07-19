@@ -15,7 +15,7 @@ import {RequestSentComponent} from "./modules/request-sent/request-sent.componen
 export const routes: Routes = [
   {
     path: '',
-    component: OnboardingComponent
+    component: LoginComponent
   },
   {
     path: 'login',

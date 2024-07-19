@@ -24,6 +24,11 @@ export class HomeComponent {
   ngOnInit(): void {
   }
 
+  logout(): void {
+    localStorage.removeItem('Token');
+    window.location.href = '/login';
+  }
+
   constructor() {
   }
 

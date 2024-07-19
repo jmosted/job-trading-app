@@ -1,3 +1,4 @@
+
 <div class="w-full h-screen flex flex-col p-10 gap-10">
   <div class="flex items-center justify-between">
     <div>
@@ -45,6 +46,7 @@
       </p>
       <button (click)="onSendForm()" class="b-primary w-full">Iniciar sesión</button>
     </div>
-
+    
   </div>
 </div>
+<app-loading [isBlock]="loadingForm"></app-loading>
