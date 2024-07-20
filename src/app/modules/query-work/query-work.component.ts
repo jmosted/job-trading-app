@@ -69,4 +69,8 @@ export class QueryWorkComponent {
       })
     );
   }
+
+  public goToOffer(offer_id: number): void {
+    this.router.navigate(['/detail-work'], {queryParams: {offer_id}});
+  }
 }

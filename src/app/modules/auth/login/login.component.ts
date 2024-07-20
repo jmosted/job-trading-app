@@ -92,11 +92,11 @@ export class LoginComponent implements OnInit, OnDestroy {
         next: (res) => {
           if (res.error) {
             this.errorMessage = 'Error al iniciar sesión';
-            this.notifService.show(res.msg??this.errorMessage, 'error', 5000);
+            this.notifService.show(res.msg??this.errorMessage, 'error', 3000);
             return;
           }
           this.catchTokenUrl(res)
-          this.notifService.show(res.msg, 'success', 5000);
+          this.notifService.show(res.msg, 'success', 3000);
           this.router.navigate(['/home']);
         },
         error: (err) => {

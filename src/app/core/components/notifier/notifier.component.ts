@@ -26,11 +26,12 @@ export class NotifierComponent {
 
   ngOnInit(): void {
     this.notificationService.notifications$.subscribe((notification) => {
-      this.notification_color = this.getColor(notification);
+       this.notification_color = this.getColor(notification);
+      //this.notification_color = 'blue';
       this.notifications.push(notification);
       setTimeout(() => {
         this.removeNotification(notification);
-      }, 5000); // Remueve la notificación después de 5 segundos
+      }, 3000); // Remueve la notificación después de 5 segundos
     });
   }
 
@@ -40,6 +41,8 @@ export class NotifierComponent {
 
   getColor(notification:INotification): string {
     let color: string = 'blue';
+    if(!notification.type) return color; 
+
     switch(notification.type) {
       case 'success':
        color = 'green';

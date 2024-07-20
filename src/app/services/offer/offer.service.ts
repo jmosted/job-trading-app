@@ -13,12 +13,13 @@ export class OfferService {
 
   private urlSelectOffers: string = EnvServiceProvider.useFactory().ENGINE_OFFER + '/offers';
 
+  private urlGetOffer: string = EnvServiceProvider.useFactory().ENGINE_OFFER + '/offer';
+
   private urlCreateOffer: string = EnvServiceProvider.useFactory().ENGINE_OFFER + '/offer/create';
 
   private urlUpdateOffer: string = EnvServiceProvider.useFactory().ENGINE_OFFER + '/offer/update';
 
   private urlDeleteOffer: string = EnvServiceProvider.useFactory().ENGINE_OFFER + '/offer/delete';
-
 
   private selectTokens() {
     let token = localStorage.getItem('Token') || '';
@@ -34,6 +35,13 @@ export class OfferService {
   public selectOffers(data: RequestListOffer): Observable<ResponseOffers> {
     let headers = this.selectTokens();
     let params = new HttpParams({fromObject: {...data}});
+    return this._httpClient.get<ResponseOffers>(this.urlSelectOffers, {headers, params});
+  }
+
+  public getOfferById(offer_id: number): Observable<ResponseOffers> {
+    debugger
+    let headers = this.selectTokens();
+    let params = new HttpParams({fromObject: {"offer_id": offer_id}});
     return this._httpClient.get<ResponseOffers>(this.urlSelectOffers, {headers, params});
   }
 
